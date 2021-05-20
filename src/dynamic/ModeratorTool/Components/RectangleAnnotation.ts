@@ -29,6 +29,31 @@ export const makeTopLabel = (dataLabel:DataLabel,raster:paper.Raster) => {
 
 
 export const  makeRectangleAnnotation = (dataLabel:DataLabel,raster:paper.Raster)=>{
+  if(dataLabel.value.relativeUnits){
+    const cords = {
+        x:undefined,
+        y:undefined
+    } 
+    cords.x = dataLabel.value.relativeUnits.topLeft.x * raster.bounds.width
+    cords.y = dataLabel.value.relativeUnits.topLeft.y * raster.bounds.height
+    const topLeft = new paper.Point(cords)
+    const height = dataLabel.value.relativeUnits.height*raster.bounds.height
+    const width = dataLabel.value.relativeUnits.width*raster.bounds.width
+
+
+
+
+    const rect= new paper.Path.Rectangle({
+      point: topLeft.add(raster.bounds.topLeft),
+      size: [width,height], // TODO: Check validity of order
+      strokeWidth: 2,
+      fillColor: "rgba(255,0,0,0.1)",
+      strokeColor: "#FF0000",
+    });
+  
+  return rect
+  }
+
     const rect= new paper.Path.Rectangle({
         point: raster.bounds.topLeft.add(
             new paper.Point(dataLabel.value.topLeft.x,dataLabel.value.topLeft.y)

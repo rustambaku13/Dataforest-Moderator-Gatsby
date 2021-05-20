@@ -7,6 +7,13 @@ export interface DataLabelAnnotationValues{
     x:number,
     y:number
   }
+  relativeUnits?:{
+    height: number
+    width: number
+    topLeft: {
+      x:number,
+      y:number
+    }}
 }
 
 
