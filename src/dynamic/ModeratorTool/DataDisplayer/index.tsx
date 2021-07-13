@@ -35,7 +35,7 @@ export const DataDisplayer = observer(()=>{
             <Box h='100%' w='100%' overflow='hidden' position='relative'>
             <Flex pos='absolute' transition='0.5s ease-in-out all' transform={`translateX(-${leftOffset+"%"})`} overflow='visible' h='100%' w='100%' px='10px' spacing={5}>
                 
-                {ModeratorStore.submissions.map((item,index)=><DataCard index={index} submission={item}/>)}
+                {ModeratorStore.submissions.map((item,index)=><DataCard index={index} submission={item.submission}/>)}
             </Flex>
             </Box>
                 <IconButton aria-label="Right Icon" variant='unstyled' minW='unset' onClick={()=>{

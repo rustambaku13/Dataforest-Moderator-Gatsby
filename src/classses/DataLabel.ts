@@ -28,6 +28,12 @@ export class DataLabel{
         this.generatePaperView = this.generatePaperView.bind(this);
         
     }
+    select() {
+        if (this.element instanceof paper.Item) this.element.selected = true;
+      }
+      deselect() {
+        if (this.element instanceof paper.Item) this.element.selected = false;
+      }
 
     
 

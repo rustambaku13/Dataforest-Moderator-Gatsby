@@ -11,6 +11,8 @@ import { DataDisplayer } from "../../dynamic/ModeratorTool/DataDisplayer";
 import { LabelInfo } from "../../dynamic/ModeratorTool/LabelInfo";
 import ModeratorStore from '../../store/ModeratorStore'
 import { flowResult } from "mobx";
+import UserStore from '../../store/UserStore'
+import { observer } from "mobx-react-lite";
 
 
 const RejectButtom = ()=>{
@@ -61,7 +63,14 @@ const AcceptButton = ()=>{
 }
 
 
-const ModeratorToolPage = () => {
+const ModeratorToolPage = observer(() => {
+  if(!UserStore.identifiedUser){
+    return null
+  }
+  if(UserStore.identifiedUser && !UserStore.me){
+    if(window)navigate("/")
+    return null
+  }
   return (
     <>
       <Flex pos="relative" h="100vh" w="100vw">
@@ -73,9 +82,9 @@ const ModeratorToolPage = () => {
               <DataDisplayer/>
               <Center h='100px' w='100%'>
                   
-                    <RejectButtom/>
-                      <AcceptButton/>
-                  
+              <RejectButtom/>
+              <AcceptButton/>
+            
               </Center>
           </Box>
         </VStack>
@@ -83,5 +92,5 @@ const ModeratorToolPage = () => {
       </Flex>
     </>
   );
-};
+});
 export default ModeratorToolPage;

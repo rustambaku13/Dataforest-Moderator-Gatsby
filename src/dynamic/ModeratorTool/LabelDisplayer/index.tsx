@@ -81,7 +81,7 @@ export const LabelsDisplayer = observer(() => {
       
       <LabelTree
         element={DataLabelsItem}
-        labels={ModeratorStore.selectedSubmission?ModeratorStore.submissions[ModeratorStore.selectedSubmission].labels:[]}
+        labels={ModeratorStore.selectedSubmission?ModeratorStore.submissions[ModeratorStore.selectedSubmission].submission.labels:[]}
       />
       </Box>
     </Flex></Box>

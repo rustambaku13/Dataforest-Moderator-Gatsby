@@ -12,7 +12,4 @@ export const updateSubmission = async (taskId,dataId,status)=>{
   })
   
   return data
-
-
-
 }

@@ -65,6 +65,12 @@ export const DataLabelsItem = observer(
               ></IconButton>
             ) : null}
           </Button>
+          {label.is_annotation?null:<Box _selected={{
+            bg: "gold.light",
+          }}
+          aria-selected={ModeratorStore.selectedDataLabel == label} w="100%" pos="relative" display="none" role="menu" as="ul">
+              &#8226; {label.value}
+        </Box>}
           <Box w="100%" pos="relative" display="none" role="menu" as="ul">
             {children}
           </Box>

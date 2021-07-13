@@ -20,13 +20,12 @@ class UserStore{
       this.identifiedUser = true;
     }
     *login_cookie(token) {
-        try {
-          console.log(token);
-          
+        try {          
           this.token = token;
-          ms_main.defaults.headers["Authorization"] = `Bearer ${token}`;
-          ms_auth.defaults.headers["Authorization"] = `Bearer ${token}`;
-          const {data} = yield getLoggenInUser()
+          console.log(token)
+          ms_main.defaults.headers["Authorization"] = `Bearer ${this.token}`;
+          ms_auth.defaults.headers["Authorization"] = `Bearer ${this.token}`;
+          const {data} = yield getLoggenInUser(token)
           
           this.me = data;
         } catch (err) {

@@ -1,6 +1,7 @@
+import { Task } from './../types/task';
 import { makeAutoObservable } from 'mobx';
 import { makeRaster } from '../dynamic/ModeratorTool/Components/Raster';
-import {Submission as SubmissionType} from '../types/submission'
+import {Submission as SubmissionType, TaskSubmissionType} from '../types/submission'
 import { DataLabel } from './DataLabel';
 import paper from "paper/dist/paper-core";
 
@@ -24,7 +25,6 @@ export class Submission{
         this.datasets = submission.datasets
         this.tasks = submission.tasks
         this.labels = submission.labels.map(item=> new DataLabel(item))
-
     }
 
     removePaperView(){
@@ -56,6 +56,21 @@ export class Submission{
             paper.project.addLayer(a)
             ref.element = a
         })
-        
     }
+}
+
+export class TaskSubmission{
+    id:string
+    submission: Submission
+    task: Task
+    status:number
+    constructor(submission:TaskSubmissionType){
+        makeAutoObservable(this)
+        this.status = submission.status
+        this.id = submission._id.$oid
+        this.submission = new Submission(submission.submission)
+        this.task = submission.task
+    }
+
+
 }
